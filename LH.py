@@ -21,10 +21,7 @@ tgToken = os.environ["tgToken"]
 
 #钉钉机器人告警   
 def sendmessage(message):
-    #修改为你自己的钉钉webhook
-    url = "https://bark.odemon.org/xny56qhxyyLqVwYa3GMbae/VPS/时效性通知?group=VPS&level=timeSensitive"
-	
-     try:
+    try:
         response = requests.post(
             url="https://bark.odemon.org",
             headers={
