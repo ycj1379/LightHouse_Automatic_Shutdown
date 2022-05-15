@@ -22,23 +22,32 @@ tgToken = os.environ["tgToken"]
 #钉钉机器人告警   
 def sendmessage(message):
     #修改为你自己的钉钉webhook
-    url = "https://oapi.dingtalk.com/robot/send?access_token=******************************************"
-    HEADERS = {
-        "Content-Type": "application/json ;charset=utf-8"
-    }
-    String_textMsg = {
-        "msgtype": "text",
-        "text": {"content": message},
-        "at": {
-            "atMobiles": [
-                "15*********"                                    #如果需要@某人，这里写他的手机号
-            ],
-            "isAtAll": 1                                         #如果需要@所有人，这里写1
-        }
-    }
-    String_textMsg = json.dumps(String_textMsg)
-    res = requests.post(url, data=String_textMsg, headers=HEADERS)
-    print(res.text)
+    url = "https://bark.odemon.org/xny56qhxyyLqVwYa3GMbae/VPS/时效性通知?group=VPS&level=timeSensitive"
+	
+     try:
+        response = requests.post(
+            url="https://bark.odemon.org",
+            headers={
+                "Content-Type": "application/json; charset=utf-8",
+            },
+            data=json.dumps({
+                "body": "腾讯HK流量",
+                "device_key": "xny56qhxyyLqVwYa3GMbae",
+                "title": "bleem",
+                "category": "category",
+                "sound": "minuet.caf",
+                "badge": 1,
+                "icon": "",
+                "group": "",
+                "url": ""
+            })
+        )
+        print('Response HTTP Status Code: {status_code}'.format(
+            status_code=response.status_code))
+        print('Response HTTP Response Body: {content}'.format(
+            content=response.content))
+    except requests.exceptions.RequestException:
+        print('HTTP Request failed')
     
 #key参数  
 def doCheck():
